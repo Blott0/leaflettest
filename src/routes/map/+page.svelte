@@ -5,14 +5,14 @@
     
     let map
 
-    function mapInit() {
+    function mapInit(container) {
         if (browser) {
             const icon = L.icon({
                 iconUrl: 'https://img.freepik.com/free-vector/location_53876-25530.jpg?size=626&ext=jpg',
                 iconSize:     [28, 40],
                 iconAnchor:   [14, 40]
             })
-            map = L.map('map', {scrollWheelZoom: false}).setView([37.535661, 13.037825], 15)
+            map = L.map(container, {scrollWheelZoom: false}).setView([37.535661, 13.037825], 15)
             let layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
             let marker = L.marker([37.535661, 13.037825], {icon: icon}).addTo(map)
             map.addLayer(layer)
@@ -33,10 +33,4 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
 </svelte:head>
 
-<section id="map" use:mapInit />
-
-<style>
-    #map {
-        height: 100vh;
-    }
-</style>
+<section style="height: 100vh;" use:mapInit />
